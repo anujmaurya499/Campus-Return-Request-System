@@ -99,63 +99,63 @@ class LinkedList {
     }
 
     public static void printList(LinkedList list) {
-        Node currNode = list.head;
-        while (currNode != null) {
-            System.out.print(currNode.DAY + " " + currNode.Firstname + " " + currNode.lastname + " " + "(" + currNode.rollno + ")  ");
-            currNode = currNode.next;
+        Node Current_Node = list.head;
+        while (Current_Node != null) {
+            System.out.print(Current_Node.DAY + " " + Current_Node.Firstname + " " + Current_Node.lastname + " " + "(" + Current_Node.rollno + ")  ");
+            Current_Node = Current_Node.next;
         }
         System.out.println("\n");
     }
 
     public static Node deleteByKey(LinkedList list, String firstname) {
-        Node currNode = list.head, prev = null;
-        if (currNode != null && currNode.Firstname.equals(firstname)) {
-            list.head = currNode.next;
-            return currNode;
+        Node Current_Node = list.head, prev = null;
+        if (Current_Node != null && Current_Node.Firstname.equals(firstname)) {
+            list.head = Current_Node.next;
+            return Current_Node;
         }
-        while (currNode != null && !currNode.Firstname.equals(firstname)) {
-            prev = currNode;
-            currNode = currNode.next;
+        while (Current_Node != null && !Current_Node.Firstname.equals(firstname)) {
+            prev = Current_Node;
+            Current_Node = Current_Node.next;
         }
-        if (currNode != null) {
-            prev.next = currNode.next;
+        if (Current_Node != null) {
+            prev.next = Current_Node.next;
         }
-        if (currNode == null) {
+        if (Current_Node == null) {
             System.out.println();
         }
-        return currNode;
+        return Current_Node;
     }
 
     public static LinkedList shift_from_waitlist_to_confirmed(LinkedList list1, LinkedList list2) {
-        Node currNode = list1.head;
-        if (currNode == null) {
+        Node Current_Node = list1.head;
+        if (Current_Node == null) {
             System.out.print(' ');
         } else {
-            list2 = LinkedList.insert(list2, currNode.Firstname, currNode.lastname, currNode.rollno, currNode.DAY);
-            list1.head = currNode.next;
+            list2 = LinkedList.insert(list2, Current_Node.Firstname, Current_Node.lastname, Current_Node.rollno, Current_Node.DAY);
+            list1.head = Current_Node.next;
         }
         return list2;
     }
 
     public static LinkedList sortList(LinkedList list) {
-        Node current = list.head, index = null;
-        if (current == null) {
+        Node Current_ent = list.head, index = null;
+        if (Current_ent == null) {
             return list;
-        } else if (current.next == null) {
+        } else if (Current_ent.next == null) {
             return list;
         } else {
-            while (current != null) {
-                index = current.next;
+            while (Current_ent != null) {
+                index = Current_ent.next;
                 while (index != null) {
-                    if (current.DAY > index.DAY) {
-                        swapNodes(list, current, index);
-                        Node temp = current;
-                        current = index;
+                    if (Current_ent.DAY > index.DAY) {
+                        swapNodes(list, Current_ent, index);
+                        Node temp = Current_ent;
+                        Current_ent = index;
                         index = temp;
                     }
                     index = index.next;
                 }
-                current = current.next;
+                Current_ent = Current_ent.next;
             }
         }
         return list;
@@ -168,33 +168,33 @@ class LinkedList {
             return;
         }
         Node prevX = null;
-        Node currX = list.head;
-        while (currX != null && currX.rollno != x) {
-            prevX = currX;
-            currX = currX.next;
+        Node Current_X = list.head;
+        while (Current_X != null && Current_X.rollno != x) {
+            prevX = Current_X;
+            Current_X = Current_X.next;
         }
-        Node prevY = null, currY = list.head;
-        while (currY != null && currY.rollno != y) {
-            prevY = currY;
-            currY = currY.next;
+        Node prevY = null, Current_Y = list.head;
+        while (Current_Y != null && Current_Y.rollno != y) {
+            prevY = Current_Y;
+            Current_Y = Current_Y.next;
         }
-        if (currX == null || currY == null) {
+        if (Current_X == null || Current_Y == null) {
             return;
         }
         if (prevX != null) {
-            prevX.next = currY;
+            prevX.next = Current_Y;
         } else //
         {
-            list.head = currY;
+            list.head = Current_Y;
         }
         if (prevY != null) {
-            prevY.next = currX;
+            prevY.next = Current_X;
         } else {
-            list.head = currX;
+            list.head = Current_X;
         }
-        Node temp = currX.next;
-        currX.next = currY.next;
-        currY.next = temp;
+        Node temp = Current_X.next;
+        Current_X.next = Current_Y.next;
+        Current_Y.next = temp;
     }
 
 }
